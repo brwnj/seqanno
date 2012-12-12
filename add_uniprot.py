@@ -18,7 +18,6 @@ def main(args):
     db, uniprot_header = todict(args.UNIPROT)
     header = ["genename"]
     for gene in reader(args.GENELIST, header=header):
-        # there is only one gene name per entry in the ta file
         e = db.get(gene['genename'])
         fields = []
         for h in header:
