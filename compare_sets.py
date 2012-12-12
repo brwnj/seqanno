@@ -30,13 +30,11 @@ def get_dict(filein, column, sep="\t"):
     return fdict
     
 def main(args):
-    args = get_args()
     seta = get_set(args.filea, args.column, args.separator)
     setb = get_set(args.fileb, args.column, args.separator)
     comparisons = {'aonly':seta - setb,
                    'bonly':setb - seta,
-                   'intersection': seta & setb,
-                   'union':seta | setb}
+                   'intersection': seta & setb}
     if args.mode == 'bonly':
         lookup = get_dict(args.fileb, args.column, args.separator)
         head = header(args.fileb)
@@ -57,10 +55,11 @@ if __name__ == "__main__":
                     formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('filea')
     p.add_argument('fileb')
-    p.add_argument('-m', '--mode', required=True,
-                    choices="intersection union aonly bonly".split(),
+    req = p.add_argument_group("required arguments")
+    req.add_argument('-m', '--mode', required=True,
+                    choices="intersection aonly bonly".split(),
                     default='intersection', help='desired output [ intersection ]')
-    p.add_argument('-col', '--column', required=True, 
+    req.add_argument('-col', '--column', required=True, 
                     help='column name if header, number if no header')
     p.add_argument('-sep', '--separator', default="\t", 
                     help='field delimiter [ tab ]')
