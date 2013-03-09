@@ -1,8 +1,3 @@
-Suite for annotating TA sites
-==============================
+#seqanno
 
-Bedtools and Samtools must be in your ``$PATH``
-
-Python requires toolshed:
-
-    pip install toolshed
+Retrieves read counts originating at a given genomic sequence and allows further characterization. 
