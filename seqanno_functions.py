@@ -43,6 +43,7 @@ def get_locs(start, genes, gene_dict):
 def search(args):
     """Given fasta, gff, and bam, parses for sequence, annotates feature, and
     reports coverage.
+    Args: bedgraph, fasta, gff, seq, feature, verbose.
     """
     match_seq = args.seq.upper()
 
@@ -94,7 +95,9 @@ def search(args):
         print "\t".join(map(str, fields))
 
 def genestat(args):
-    """Reads bed-like file from annotation and returns gene level stats."""
+    """Reads bed-like file from annotation and returns gene level stats.
+    Args: bed, cutoff, bounds.
+    """
     lower_b, upper_b = args.bounds.split(",")
     total_c = Counter()
     dire_c = Counter()
@@ -143,7 +146,7 @@ def compare(args):
         print "\t".join(lookup[set_items])
 
 def uniprot(args):
-    """Add Uniprot annotation to gene list."""
+    """Add Uniprot annotation to gene list. Args: genes, uniprotdb, column"""
     uniprot_db = {}
     uniprot_header = header(args.uniprotdb)
     for entry in reader(args.uniprotdb):
